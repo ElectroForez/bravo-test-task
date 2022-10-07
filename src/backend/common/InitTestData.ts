@@ -48,15 +48,19 @@ export default async function InitTestData() {
 
     // save applications
     for (const person of persons) {
-        const i = persons.indexOf(person);
-        const document = documents[i];
+        const personIndex = persons.indexOf(person);
 
-        const candidate = await ApplicationRepository.findOneBy({person, document});
-        if (!candidate) {
-            const application = new DocumentApplication();
-            application.person = person;
-            application.document = document;
-            await ApplicationRepository.save(application);
+
+        const applicationDocuments = documents.filter((_, i) => i <= personIndex);
+
+        for (const document of applicationDocuments) {
+            const candidate = await ApplicationRepository.findOneBy({person, document});
+            if (!candidate) {
+                const application = new DocumentApplication();
+                application.person = person;
+                application.document = document;
+                await ApplicationRepository.save(application);
+            }
         }
     }
 }
