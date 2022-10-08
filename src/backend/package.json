@@ -3,8 +3,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "backend": "env-cmd --no-override ts-node main.ts",
-    "dev:watch": "tsc-watch --onSuccess 'npm run backend'"
+    "start": "env-cmd --no-override ts-node main.ts",
+    "dev:watch": "tsc-watch --onSuccess 'npm start'"
   },
   "author": "Vlad Tantsev",
   "license": "ISC",
